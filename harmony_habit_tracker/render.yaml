@@ -2,8 +2,8 @@ services:
   - type: web
     name: harmony-habit-tracker
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --chdir src "main:app"
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn --chdir src main:app"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
