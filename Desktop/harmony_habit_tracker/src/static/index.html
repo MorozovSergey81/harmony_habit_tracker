@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony - Трекер привычек</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Боковая панель навигации -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>Harmony</h1>
+                </div>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#dashboard"><i class="fas fa-home"></i> <span>Главная</span></a></li>
+                <li><a href="#habits"><i class="fas fa-list-check"></i> <span>Привычки</span></a></li>
+                <li><a href="#statistics"><i class="fas fa-chart-line"></i> <span>Статистика</span></a></li>
+                <li><a href="#settings"><i class="fas fa-gear"></i> <span>Настройки</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#profile" class="user-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>Пользователь</h3>
+                        <p>Профиль</p>
+                    </div>
+                </a>
+                <a href="#logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Контейнер для страниц -->
+            <div class="page-container">
+                <!-- Страница входа -->
+                <div class="page" id="login-page">
+                    <div class="auth-container">
+                        <div class="auth-form-container">
+                            <div class="auth-header">
+                                <div class="logo">
+                                    <i class="fas fa-leaf"></i>
+                                    <h1>Harmony</h1>
+                                </div>
+                                <p>Трекер привычек для гармоничной жизни</p>
+                            </div>
+                            <div class="auth-tabs">
+                                <button class="auth-tab active" data-tab="login">Вход</button>
+                                <button class="auth-tab" data-tab="register">Регистрация</button>
+                            </div>
+                            <div class="auth-form active" id="login-form">
+                                <div class="form-group">
+                                    <label for="login-username">Имя пользователя</label>
+                                    <input type="text" id="login-username" placeholder="Введите имя пользователя">
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Пароль</label>
+                                    <input type="password" id="login-password" placeholder="Введите пароль">
+                                </div>
+                                <button class="btn btn-primary btn-block">Войти</button>
+                            </div>
+                            <div class="auth-form" id="register-form">
+                                <div class="form-group">
+                                    <label for="register-username">Имя пользователя</label>
+                                    <input type="text" id="register-username" placeholder="Придумайте имя пользователя">
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-email">Email</label>
+                                    <input type="email" id="register-email" placeholder="Введите email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-password">Пароль</label>
+                                    <input type="password" id="register-password" placeholder="Придумайте пароль">
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-password-confirm">Подтверждение пароля</label>
+                                    <input type="password" id="register-password-confirm" placeholder="Повторите пароль">
+                                </div>
+                                <button class="btn btn-primary btn-block">Зарегистрироваться</button>
+                            </div>
+                        </div>
+                        <div class="auth-image">
+                            <div class="auth-image-content">
+                                <h2>Развивайте полезные привычки</h2>
+                                <p>Harmony поможет вам отслеживать прогресс и достигать целей</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Главная страница (дашборд) -->
+                <div class="page active" id="dashboard-page">
+                    <div class="page-header">
+                        <h2>Добро пожаловать в Harmony</h2>
+                        <p class="date-display" id="current-date">Среда, 28 мая</p>
+                    </div>
+                    
+                    <div class="dashboard-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Сегодня</h3>
+                                <p class="summary-value">3/5</p>
+                                <p class="summary-label">выполнено</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Серия</h3>
+                                <p class="summary-value">7</p>
+                                <p class="summary-label">дней</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Лучшая серия</h3>
+                                <p class="summary-value">14</p>
+                                <p class="summary-label">дней</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Всего</h3>
+                                <p class="summary-value">5</p>
+                                <p class="summary-label">привычек</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-header">
+                        <h3>Сегодняшние привычки</h3>
+                        <button class="btn btn-primary" id="add-habit-btn">
+                            <i class="fas fa-plus"></i> Добавить привычку
+                        </button>
+                    </div>
+                    
+                    <div class="habits-container">
+                        <div class="habit-card">
+                            <div class="habit-header">
+                                <div class="habit-icon" style="background-color: #4CAF50;">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <div class="habit-info">
+                                    <h3>Утренняя пробежка</h3>
+                                    <p>30 минут</p>
+                                </div>
+                                <div class="habit-actions">
+                                    <button class="habit-action-btn">
+                                        <i class="fas fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="habit-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                                <div class="habit-streak">
+                                    <i class="fas fa-fire"></i> 7 дней
+                                </div>
+                            </div>
+                            <div class="habit-footer">
+                                <button class="btn btn-success habit-complete-btn">
+                                    <i class="fas fa-check"></i> Выполнено
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="habit-card">
+                            <div class="habit-header">
+                                <div class="habit-icon" style="background-color: #2196F3;">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="habit-info">
+                                    <h3>Чтение книги</h3>
+                                    <p>20 страниц</p>
+                                </div>
+                                <div class="habit-actions">
+                                    <button class="habit-action-btn">
+                                        <i class="fas fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="habit-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                                <div class="habit-streak">
+                                    <i class="fas fa-fire"></i> 5 дней
+                                </div>
+                            </div>
+                            <div class="habit-footer">
+                                <button class="btn btn-success habit-complete-btn">
+                                    <i class="fas fa-check"></i> Выполнено
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="habit-card">
+                            <div class="habit-header">
+                                <div class="habit-icon" style="background-color: #FF9800;">
+                                    <i class="fas fa-glass-water"></i>
+                                </div>
+                                <div class="habit-info">
+                                    <h3>Пить воду</h3>
+                                    <p>2 литра</p>
+                                </div>
+                                <div class="habit-actions">
+                                    <button class="habit-action-btn">
+                                        <i class="fas fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="habit-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%;"></div>
+                                </div>
+                                <div class="habit-streak">
+                                    <i class="fas fa-fire"></i> 10 дней
+                                </div>
+                            </div>
+                            <div class="habit-footer">
+                                <div class="habit-value-input">
+                                    <button class="value-btn minus-btn">-</button>
+                                    <input type="number" value="1.5" min="0" max="2" step="0.1">
+                                    <button class="value-btn plus-btn">+</button>
+                                    <span class="value-unit">л</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="habit-card">
+                            <div class="habit-header">
+                                <div class="habit-icon" style="background-color: #9C27B0;">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="habit-info">
+                                    <h3>Медитация</h3>
+                                    <p>15 минут</p>
+                                </div>
+                                <div class="habit-actions">
+                                    <button class="habit-action-btn">
+                                        <i class="fas fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="habit-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <div class="habit-streak">
+                                    <i class="fas fa-fire"></i> 3 дня
+                                </div>
+                            </div>
+                            <div class="habit-footer">
+                                <button class="btn btn-outline habit-complete-btn">
+                                    <i class="fas fa-check"></i> Отметить выполнение
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="habit-card">
+                            <div class="habit-header">
+                                <div class="habit-icon" style="background-color: #F44336;">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <div class="habit-info">
+                                    <h3>Тренировка</h3>
+                                    <p>45 минут</p>
+                                </div>
+                                <div class="habit-actions">
+                                    <button class="habit-action-btn">
+                                        <i class="fas fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="habit-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <div class="habit-streak">
+                                    <i class="fas fa-fire"></i> 0 дней
+                                </div>
+                            </div>
+                            <div class="habit-footer">
+                                <button class="btn btn-outline habit-complete-btn">
+                                    <i class="fas fa-check"></i> Отметить выполнение
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-header">
+                        <h3>Недельная активность</h3>
+                    </div>
+                    
+                    <div class="weekly-activity">
+                        <div class="week-days">
+                            <div class="day-column">
+                                <div class="day-header">Пн</div>
+                                <div class="day-dots">
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Вт</div>
+                                <div class="day-dots">
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot missed"></div>
+                                    <div class="day-dot completed"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Ср</div>
+                                <div class="day-dots">
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot completed"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Чт</div>
+                                <div class="day-dots">
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Пт</div>
+                                <div class="day-dots">
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Сб</div>
+                                <div class="day-dots">
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                </div>
+                            </div>
+                            <div class="day-column">
+                                <div class="day-header">Вс</div>
+                                <div class="day-dots">
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                    <div class="day-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Страница привычек -->
+                <div class="page" id="habits-page">
+                    <div class="page-header">
+                        <h2>Мои привычки</h2>
+                        <button class="btn btn-primary" id="add-habit-btn-2">
+                            <i class="fas fa-plus"></i> Добавить привычку
+                        </button>
+                    </div>
+                    
+                    <div class="habits-filter">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Поиск привычек...">
+                        </div>
+                        <div class="filter-options">
+                            <button class="filter-btn active">Все</button>
+                            <button class="filter-btn">Активные</button>
+                            <button class="filter-btn">Архивные</button>
+                        </div>
+                    </div>
+                    
+                    <div class="habits-list">
+                        <!-- Привычки будут добавлены динамически -->
+                    </div>
+                </div>
+                
+                <!-- Страница статистики -->
+                <div class="page" id="statistics-page">
+                    <div class="page-header">
+                        <h2>Статистика и аналитика</h2>
+                        <div class="period-selector">
+                            <button class="period-btn active">Неделя</button>
+                            <button class="period-btn">Месяц</button>
+                            <button class="period-btn">Год</button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stats-card">
+                            <h3>Общий прогресс</h3>
+                            <div class="chart-container">
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <h3>Выполнение по дням</h3>
+                            <div class="chart-container">
+                                <canvas id="completionChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <h3>Лучшие привычки</h3>
+                            <div class="chart-container">
+                                <canvas id="habitsChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <h3>Серии выполнения</h3>
+                            <div class="chart-container">
+                                <canvas id="streakChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Страница настроек -->
+                <div class="page" id="settings-page">
+                    <div class="page-header">
+                        <h2>Настройки</h2>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <div class="settings-section">
+                            <h3>Профиль</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="settings-username">Имя пользователя</label>
+                                    <input type="text" id="settings-username" value="Пользователь">
+                                </div>
+                                <div class="form-group">
+                                    <label for="settings-email">Email</label>
+                                    <input type="email" id="settings-email" value="user@example.com">
+                                </div>
+                                <button class="btn btn-primary">Сохранить изменения</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Безопасность</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="settings-current-password">Текущий пароль</label>
+                                    <input type="password" id="settings-current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="settings-new-password">Новый пароль</label>
+                                    <input type="password" id="settings-new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="settings-confirm-password">Подтверждение пароля</label>
+                                    <input type="password" id="settings-confirm-password">
+                                </div>
+                                <button class="btn btn-primary">Изменить пароль</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Уведомления</h3>
+                            <div class="settings-options">
+                                <div class="settings-option">
+                                    <div class="option-info">
+                                        <h4>Ежедневные напоминания</h4>
+                                        <p>Получать напоминания о невыполненных привычках</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="settings-option">
+                                    <div class="option-info">
+                                        <h4>Еженедельный отчет</h4>
+                                        <p>Получать еженедельный отчет о прогрессе</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="settings-option">
+                                    <div class="option-info">
+                                        <h4>Уведомления о достижениях</h4>
+                                        <p>Получать уведомления о достижении целей</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Внешний вид</h3>
+                            <div class="theme-selector">
+                                <div class="theme-option active" data-theme="light">
+                                    <div class="theme-preview light-theme"></div>
+                                    <span>Светлая</span>
+                                </div>
+                                <div class="theme-option" data-theme="dark">
+                                    <div class="theme-preview dark-theme"></div>
+                                    <span>Темная</span>
+                                </div>
+                                <div class="theme-option" data-theme="system">
+                                    <div class="theme-preview system-theme"></div>
+                                    <span>Системная</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Модальное окно для добавления/редактирования привычки -->
+    <div class="modal" id="habit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Новая привычка</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="habit-form">
+                    <div class="form-group">
+                        <label for="habit-name">Название</label>
+                        <input type="text" id="habit-name" placeholder="Введите название привычки">
+                    </div>
+                    <div class="form-group">
+                        <label for="habit-description">Описание</label>
+                        <textarea id="habit-description" placeholder="Введите описание привычки"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="habit-icon">Иконка</label>
+                            <div class="icon-selector" id="habit-icon">
+                                <div class="selected-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <div class="icon-dropdown">
+                                    <div class="icon-option" data-icon="fa-running"><i class="fas fa-running"></i></div>
+                                    <div class="icon-option" data-icon="fa-book"><i class="fas fa-book"></i></div>
+                                    <div class="icon-option" data-icon="fa-glass-water"><i class="fas fa-glass-water"></i></div>
+                                    <div class="icon-option" data-icon="fa-brain"><i class="fas fa-brain"></i></div>
+                                    <div class="icon-option" data-icon="fa-dumbbell"><i class="fas fa-dumbbell"></i></div>
+                                    <div class="icon-option" data-icon="fa-bed"><i class="fas fa-bed"></i></div>
+                                    <div class="icon-option" data-icon="fa-apple-whole"><i class="fas fa-apple-whole"></i></div>
+                                    <div class="icon-option" data-icon="fa-code"><i class="fas fa-code"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="habit-color">Цвет</label>
+                            <div class="color-selector" id="habit-color">
+                                <div class="selected-color" style="background-color: #4CAF50;"></div>
+                                <div class="color-dropdown">
+                                    <div class="color-option" data-color="#4CAF50" style="background-color: #4CAF50;"></div>
+                                    <div class="color-option" data-color="#2196F3" style="background-color: #2196F3;"></div>
+                                    <div class="color-option" data-color="#FF9800" style="background-color: #FF9800;"></div>
+                                    <div class="color-option" data-color="#9C27B0" style="background-color: #9C27B0;"></div>
+                                    <div class="color-option" data-color="#F44336" style="background-color: #F44336;"></div>
+                                    <div class="color-option" data-color="#009688" style="background-color: #009688;"></div>
+                                    <div class="color-option" data-color="#795548" style="background-color: #795548;"></div>
+                                    <div class="color-option" data-color="#607D8B" style="background-color: #607D8B;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="habit-frequency">Частота</label>
+                        <div class="frequency-selector" id="habit-frequency">
+                            <div class="frequency-type">
+                                <button class="frequency-btn active" data-type="daily">Ежедневно</button>
+                                <button class="frequency-btn" data-type="weekly">По дням недели</button>
+                                <button class="frequency-btn" data-type="custom">Другое</button>
+                            </div>
+                            <div class="frequency-options">
+                                <div class="frequency-daily active">
+                                    <p>Привычка будет отслеживаться каждый день</p>
+                                </div>
+                                <div class="frequency-weekly">
+                                    <div class="weekday-selector">
+                                        <div class="weekday" data-day="1">Пн</div>
+                                        <div class="weekday" data-day="2">Вт</div>
+                                        <div class="weekday" data-day="3">Ср</div>
+                                        <div class="weekday" data-day="4">Чт</div>
+                                        <div class="weekday" data-day="5">Пт</div>
+                                        <div class="weekday" data-day="6">Сб</div>
+                                        <div class="weekday" data-day="0">Вс</div>
+                                    </div>
+                                </div>
+                                <div class="frequency-custom">
+                                    <div class="form-group">
+                                        <label for="custom-frequency">Количество дней</label>
+                                        <div class="custom-frequency-input">
+                                            <input type="number" id="custom-frequency" min="1" value="1">
+                                            <span>раз в</span>
+                                            <input type="number" min="1" value="1">
+                                            <span>дней</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="habit-target">Целевое значение</label>
+                            <div class="target-input">
+                                <input type="number" id="habit-target" min="0" step="0.1" placeholder="Значение">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="habit-unit">Единица измерения</label>
+                            <input type="text" id="habit-unit" placeholder="Например: км, страниц, литров">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="habit-reminder">Напоминание</label>
+                        <input type="time" id="habit-reminder">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancel-habit">Отмена</button>
+                <button class="btn btn-primary" id="save-habit">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
