@@ -3,10 +3,12 @@ services:
     name: harmony-habit-tracker
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn --chdir src main:app"
+    startCommand: "gunicorn --chdir src main:app --log-level debug --timeout 120 --bind 0.0.0.0:\$PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: PYTHONPATH
+        value: .
       - key: DB_USERNAME
         sync: false
       - key: DB_PASSWORD
@@ -17,4 +19,3 @@ services:
         sync: false
       - key: DB_NAME
         sync: false
-
